@@ -53,8 +53,6 @@
 		zsh.enable = true;
 		};
 
-	# remote
-
 
 	networking.firewall = {
 		enable = true; # this is on by default but still declaring it.
@@ -69,13 +67,26 @@
 	services = {
 		# Enable the OpenSSH server.
 		openssh = {
-			enable = false;
+			enable = true;
 			permitRootLogin = "no";
-			passwordAuthentication = false;
-			# Allow root login with ssh.
-			extraConfig = ''
-				PermitRootLogin yes
-			'';
+			passwordAuthentication = false; # require pub key
+
+		};
+
+		fail2ban = { # puts bad ssh attempts in jail
+			enable = true;
+			# jail.local is the default configuration file for fail2ban
+			# configFile = pkgs.writeText "jail.local" ''
+			# 	[sshd]
+			# 	enabled = true
+			# 	port = ssh
+			# 	filter = sshd
+			# 	logpath = /var/log/auth.log
+			# 	maxretry = 3
+			# 	findtime = 300
+			# 	bantime = 3600
+			# 	ignoreip = 127.0.0.1
+			# 	''; # END jail.local
 		};
 		# Enable the X11 windowing system.
 		xserver = {
@@ -139,6 +150,10 @@
 					zsh
 			
 				];
+				# TODO activate with own key once server up
+				# openssh.authorizedKeys.keys = [
+						
+				# 		];
 			};
 		};
 	};
