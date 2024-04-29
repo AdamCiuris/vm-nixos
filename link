@@ -1,0 +1,27 @@
+#!/usr/bin/bash
+BASEDIR=$(readlink -f $(dirname $0)) # pwd of shell script
+nixosConfigPath=/etc/nixos
+# local nixosPath = /etc/nixos
+hard-link-recursive() {
+    local srcDir=$1
+    local destDir=$2
+    local nixFiles=$(find $srcDir -maxdepth 1 -type f -name "*.nix")
+    if [ !  -d ${destDir} ]; then
+        sudo mkdir ${destDir}
+    fi
+    sudo ln -fn $nixFiles ${destDir}   
+    local dirs=$(find $srcDir -maxdepth 1 -type d -not -path '*.*' -not -path $srcDir) # all directories except the current one and hidden ones
+    for dir in $dirs; do
+        hard-link-recursive $dir $destDir/$(basename $dir)
+    done
+}
+echo "script parent dir: $BASEDIR"
+echo "deleting /etc/nixos/* ..."
+sudo rm -rf /etc/nixos/* # Clear everything in your nixos config and remake.
+hard-link-recursive $BASEDIR /etc/nixos
+
+sudo rm /etc/nixos/hardware-configuration.nix # remove hardware config
+sudo nixos-generate-config # to get your hardware config back
+
+# rebuild and switch
+sudo nixos-rebuild switch --show-trace --print-build-logs
