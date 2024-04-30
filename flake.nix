@@ -53,8 +53,16 @@
             home-manager.nixosModules.home-manager
             {
               home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
-              home-manager.users.nyx.imports = [ ./home-manager/home.nix ];
-              home-manager.users.nyx.home.stateVersion="23.11";
+              home-manager.users = {
+                rdp = {
+                  imports = [ ./home-manager/rdpHome.nix ];
+                  home.stateVersion="23.11"; 
+                };
+                nyx = {
+                  imports = [ ./home-manager/home.nix ];
+                  home.stateVersion="23.11"; 
+                };
+              };
               home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
             }
           ];
