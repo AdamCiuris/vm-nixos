@@ -71,11 +71,11 @@
 		openssh = {
 			enable = true;
 			permitRootLogin = "no";
-			passwordAuthentication = false; # if false require pub key
+			passwordAuthentication = true; # if false require pub key
 
 		};
 
-		fail2ban = { # puts bad ssh attempts in jail
+		fail2ban = { # puts bad ssh attempts in jail 
 			enable = true;
 			bantime = "300m";
 			maxretry= 3;
@@ -89,7 +89,7 @@
 					maxretry = 3
 					findtime = 300m
 					bantime = 300m
-					action = iptables-allports
+					banaction = iptables-allports
 				'';
 
 			};
@@ -117,7 +117,9 @@
 		# remote desktop
 		xrdp = {
 				enable = true;
-				port = 8181; 
+				defaultWindowManager = "startplasma-x11";
+				confDir = /etc/xrdp;
+				port = 8181;
 				openFirewall=false; # https://c-nergy.be/blog/?p=14965/
 			};
 		pipewire = {
@@ -127,8 +129,6 @@
 			pulse.enable = true;
 		};
 	};
-	# Enable CUPS to print documents.
-
 	
 	sound.enable = true;
 	security.rtkit.enable = true;
@@ -140,6 +140,7 @@
 		mutableUsers = true; # let's you change the passwords after btw
 		users= {
 			root = {
+				# hash a password with mkpasswd -m sha-512
 				initialHashedPassword="$y$j9T$qhPMNns01CkMEoPsVUSsv/$xmo.lUiUrxdp1eOyrTBonhgGFWhGyNPDr8my3LCz.E0";
 				shell=pkgs.zsh;
 				useDefaultShell = true; # should be zsh
@@ -155,7 +156,22 @@
 				packages = with pkgs; [
 					zsh
 				];
-				# TODO activate with own key once server up
+				openssh= {
+					authorizedKeys.keys = [ # dXAgdG8gbm8gZ29vZA==
+								"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCr3aeLoj93/PgmLpNIKLEA3flVLaRbZVnyoJzK2OF+I/jkU2ZIpVLels7q1zrsaWOevZ9J9QVg/TqbXsh3pd+qg++lHU9SV6P3oJHCwj7KNGN72rohFdOjjjpVqriAW03aDbB0XmMDwc6WfWNeIspRPn8PN0rL9EUFTX8hjmKp7ljs6mEwN4yOPVgtEit+5w2xWKQVe4cA57I2s0IAeovSr01a5JpFGgMVBnBjK0ljr/ZgypU/dUcxpVS6my4eekha8mGZgjwdofQSukiYybKkk4pMSjXORZcT1oZMUHrlgd/Ea8foiPSVAFvw8F6d2RqiWhNnxgcRsHm3ZQ4dyLOwXofqd5FS/2bE1sAn/R/OMyaM/S7YTrmX1S1a1M5PYqakcVbKcttXJHltFlNTaiklcncgnejsYC1vws+F5G4CMuVAn8UR3oEBcUXbgodt1VrnTf4hG0PlbB2ux6X3dFrUnLQBtdSk2blHVfzP0XNhL6I7NcQF2y3FcyVSEc06uCM= amnesia@amnesia"
+						];
+				};
+			};
+			rdp = {
+				isNormalUser = true;
+				description = "rdp";
+				initialHashedPassword = "$6$q.mHI71zn8ey8H2l$90p6jWvDznJvWYfFUZoyyOotZZf7gnfD.0fmewJy0Clm5RsBDi8Tio9qi6JKk79puViapCxxLLVbp6UCiYNrv/";
+				shell=pkgs.zsh;
+				useDefaultShell = true; # should be zsh
+				extraGroups = [ "wheel" ];
+				packages = with pkgs; [
+					zsh
+				];
 				openssh= {
 					authorizedKeys.keys = [ # dXAgdG8gbm8gZ29vZA==
 								"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCr3aeLoj93/PgmLpNIKLEA3flVLaRbZVnyoJzK2OF+I/jkU2ZIpVLels7q1zrsaWOevZ9J9QVg/TqbXsh3pd+qg++lHU9SV6P3oJHCwj7KNGN72rohFdOjjjpVqriAW03aDbB0XmMDwc6WfWNeIspRPn8PN0rL9EUFTX8hjmKp7ljs6mEwN4yOPVgtEit+5w2xWKQVe4cA57I2s0IAeovSr01a5JpFGgMVBnBjK0ljr/ZgypU/dUcxpVS6my4eekha8mGZgjwdofQSukiYybKkk4pMSjXORZcT1oZMUHrlgd/Ea8foiPSVAFvw8F6d2RqiWhNnxgcRsHm3ZQ4dyLOwXofqd5FS/2bE1sAn/R/OMyaM/S7YTrmX1S1a1M5PYqakcVbKcttXJHltFlNTaiklcncgnejsYC1vws+F5G4CMuVAn8UR3oEBcUXbgodt1VrnTf4hG0PlbB2ux6X3dFrUnLQBtdSk2blHVfzP0XNhL6I7NcQF2y3FcyVSEc06uCM= amnesia@amnesia"
