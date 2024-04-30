@@ -55,7 +55,10 @@
 
 	networking.firewall = {
 		enable = true; # this is on by default but still declaring it.
+		logRefusedConnections =true;# logs are in dmesg or journalctl -k
 		allowedTCPPorts = [ 22 ];
+		# interface specific rules
+		# networking.firewall.interfaces."eth0".allowedTCPPorts = [ 80 443 ];
 	};
 		# allowedUD
 	# reminder you need to run this as root to delete generations from EFI
@@ -68,24 +71,28 @@
 		openssh = {
 			enable = true;
 			permitRootLogin = "no";
-			passwordAuthentication = false; # require pub key
+			passwordAuthentication = false; # if false require pub key
 
 		};
 
 		fail2ban = { # puts bad ssh attempts in jail
 			enable = true;
-			# jail.local is the default configuration file for fail2ban
-			# configFile = pkgs.writeText "jail.local" ''
-			# 	[sshd]
-			# 	enabled = true
-			# 	port = ssh
-			# 	filter = sshd
-			# 	logpath = /var/log/auth.log
-			# 	maxretry = 3
-			# 	findtime = 300
-			# 	bantime = 3600
-			# 	ignoreip = 127.0.0.1
-			# 	''; # END jail.local
+			bantime = "300m";
+			maxretry= 3;
+			banaction = "iptables-allports"; # uses iptables to block ip from every port
+			# pretty sure these are all DEFAULT
+			jails = { 
+				ssh = ''
+					enable = true
+					filter = sshd
+					logpath = /var/log/ssh_auth.log
+					maxretry = 3
+					findtime = 300m
+					bantime = 300m
+					action = iptables-allports
+				'';
+
+			};
 		};
 		# Enable the X11 windowing system.
 		xserver = {
@@ -111,7 +118,7 @@
 		xrdp = {
 				enable = true;
 				port = 8181; 
-				openFirewall=true;
+				openFirewall=false; # https://c-nergy.be/blog/?p=14965/
 			};
 		pipewire = {
 			enable = true;
@@ -149,9 +156,11 @@
 					zsh
 				];
 				# TODO activate with own key once server up
-				# openssh.authorizedKeys.keys = [
-						
-				# 		];
+				openssh= {
+					authorizedKeys.keys = [
+
+						];
+				};
 			};
 		};
 	};
