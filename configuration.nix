@@ -46,7 +46,6 @@
 		LC_TIME = "en_US.UTF-8";
 	};
 
-	
 
 	programs = {
 		dconf.enable = true;
@@ -148,7 +147,6 @@
 				extraGroups = [ "wheel" ];
 				packages = with pkgs; [
 					zsh
-			
 				];
 				# TODO activate with own key once server up
 				# openssh.authorizedKeys.keys = [
@@ -158,8 +156,8 @@
 		};
 	};
 	security.pam.services.kwallet = {
-  name = "kwallet";
-  enableKwallet = false;
+		name = "kwallet";
+		enableKwallet = false;
 };
 	# needed for vscode in pkgs
 	# nixpkgs.config.allowUnfree = true;
