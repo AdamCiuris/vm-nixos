@@ -134,7 +134,7 @@
 		users= {
 			root = {
 				# hash a password with mkpasswd -m sha-512
-				initialHashedPassword="$y$j9T$qhPMNns01CkMEoPsVUSsv/$xmo.lUiUrxdp1eOyrTBonhgGFWhGyNPDr8my3LCz.E0";
+				initialHashedPassword="$6$YRrVyps98/izQa0O$3fR8f/uNEb8B7lXYMu1lE85PZVKp3/Lc8Gc8J2mEwKr9SlUBYGKcbFcWE/SOWnvfRordhUDwv6SXilQ38o.ww1";
 				shell=pkgs.zsh;
 				useDefaultShell = true; # should be zsh
 				isSystemUser = true;
@@ -142,7 +142,7 @@
 			nyx = {
 				isNormalUser = true;
 				description = "nyx";
-				initialHashedPassword = "$y$j9T$Fj7uE/Bbwy/Zk18712MCw1$UjvkW7f2p709pqW8.B.Hor7A4HezmEHAHQ.8.LDTkSD";
+				initialHashedPassword = "$6$7ACOHeLr65U7C1Pb$oNIgMK/8iWH9AbLmhyqlJ.HyUQQst5H7jyV5IGsux4j9X7N/Fwm9Mo8u1ijOmqlGjN5ewEhPt.BsWBt518.Rw1";
 				shell=pkgs.zsh;
 				useDefaultShell = true; # should be zsh
 				extraGroups = [ "wheel" ];
@@ -158,7 +158,7 @@
 				adamciuris = {
 				isNormalUser = true;
 				description = "gcloud work pls";
-				initialHashedPassword = "$6$158TT18qbB5x2JBj$hzfAtMjkns806jCriI5Lex3/pfygcsB1E373k34YDpAIZErwulcJ/3kcNy2pBWaQYgSobPu4QVLU5ceF6iNMG/";
+				initialHashedPassword = "$6$ImaOHGRpSLuFOUpF$cPhDbahxmy35ohvYwZIK5BX4o5gvVCeeiOCAaYDCvPPf9geikS.Agw2lCxqoZjHsHS6W/6ksxaplRh2evS1x8.";
 				shell=pkgs.zsh;
 				useDefaultShell = true; # should be zsh
 				extraGroups = [ "wheel" ];
@@ -182,7 +182,7 @@
 			rdp = {
 				isNormalUser = true;
 				description = "rdp";
-				initialHashedPassword = "$6$q.mHI71zn8ey8H2l$90p6jWvDznJvWYfFUZoyyOotZZf7gnfD.0fmewJy0Clm5RsBDi8Tio9qi6JKk79puViapCxxLLVbp6UCiYNrv/";
+				initialHashedPassword = "$6$/uc.82fRtaRDvGGn$n7jEQHRys.AnSha6WJQpu68JkN7JV7ODrQoMT/IX8uaZjf3oa8izOA8MFQl2jGouBxBUpbJpMqPWfM9j6YBHi/";
 				shell=pkgs.zsh;
 				useDefaultShell = true; # should be zsh
 				extraGroups = [ "wheel" ];
