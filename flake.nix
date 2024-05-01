@@ -43,7 +43,7 @@
         }
       );
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
+        "lys-nixos.us-central1-a.c.someone-help-aaaaaaaaaaaaaa.internal" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           pkgs = legacyPackages.x86_64-linux;
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config

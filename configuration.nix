@@ -20,6 +20,11 @@
 		useOSProber = true;
 		splashImage = null;
 	};
+
+	# filesystems."/" = {
+	# 	device = "/dev/sdb";
+	# 	fsType = "ext4";
+	# };
 	# Nix settings
 	nix.settings.experimental-features = ["nix-command" "flakes"]; # needed to try flakes from tutorial
 
