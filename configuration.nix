@@ -6,20 +6,8 @@
 {
 	imports =
 		[ # Include the results of the hardware scan.
-		# ./home-manager/home-manager-module.nix
-		# ./system/nixos-generators.nix
-		./hardware-configuration.nix
+		<nixpkgs/nixos/modules/virtualisation/google-compute-image.nix>
 		];
-	# Bootloader.
-	# boot.loader.grub.enable = true;
-	# boot.loader.grub.device = "/dev/vda";
-	# boot.loader.grub.useOSProber = true;
-	boot.loader.grub = {
-		enable = true;
-		device = "/dev/vda";
-		useOSProber = true;
-		splashImage = null;
-	};
 
 	# filesystems."/" = {
 	# 	device = "/dev/sdb";
@@ -179,7 +167,14 @@
 				];
 				openssh= {
 					authorizedKeys.keys = [ 
-								"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCbNM48kr/B8WEYT9/lwDE7d8/5wQ31cJI0ELED/7lzz8qpMpZtceIAuyD0fiGjkC8Gt0qnJhM3f7KFMK5gcihz0Nal61UhVh01ny6VohMPuHSRI2fxzL1Y+ZF0S/8uDa57nzwRB8sHcy+ZRFtD7kDky1qKJ0BCn6CHBa5n+biWYf25OKxfFlG4uGbDdvbVhLH6atgq2y0sAL8DCXQmN5HmyywyLyEFcYhNqDj6dlWtiie4PRM+zCDX0C3tzCOt24b2MQ7jXG7xzE/WQNyAV+XELqTkYOdEW4t3yLRNV8egNS+JDUxSky/MGs+S6eQf8p/vbPrsY1/fBSM4CTB/nMLG/642kSBOhKb4y/7TayIzQzLA+Ut8C4OdKZm0UodSb7XS/qHkHgLIYXuFRW39vZFh/WsVZ/UPr1098+GqBgzDSkG+jSV2M1/iTVb/VypiwI1FjuKVmKXazeo97Ji1nabLA5pRnqlpWm8YW0q3he0v6IUzQ7Vk2urERMZ3KbFS+f8= adamciuris@cs-741664149018-default"
+								# Added by Google
+								''ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBED6yywm4LUKe9lzphOW3SIGxWE/Bx6KGnb95baznvAAr8fu/DwIjU9kv0OZn4RcUTLuhoEFQlYnv8V5h3pi9EI= google-ssh {"userName":"adamciuris@gmail.com","expireOn":"2024-05-01T22:54:34+0000"}''
+								# Added by Google
+								''ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAGtQsU1mQpjd9sHjvusYmGX/uEVItGqH6uFGjFrtzZs3R6W8F2MAvpEZriexxgvxcfMaF9j2rf9o6Y3dhVZmKf9oOXiDmZQKYRpaZ2mLd0HIRfRM0pwKnzeRtxUs5+9c63fYz5tCL1AogHXjDcp5sx18NPf5E316vBfNoVZxPWGt+Hc+LN1yNZe6J2mLC3tUo+nSjn/QKumh2370A8A1B+ZbvGitAfIIqHbogWGq3DCs3bkQ9WxPO4fTH/IXbBRkUGvkvRS1siHZaAH+rS2TX4n+Ym5O5A52jtRP9SLKGuu7BnVCE1DZW5DbGv4csWWfiuG4D/eO0uWhVZe1j5ICEGU= google-ssh {"userName":"adamciuris@gmail.com","expireOn":"2024-05-01T22:54:48+0000"}''
+								# Added by Google
+								''ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCbNM48kr/B8WEYT9/lwDE7d8/5wQ31cJI0ELED/7lzz8qpMpZtceIAuyD0fiGjkC8Gt0qnJhM3f7KFMK5gcihz0Nal61UhVh01ny6VohMPuHSRI2fxzL1Y+ZF0S/8uDa57nzwRB8sHcy+ZRFtD7kDky1qKJ0BCn6CHBa5n+biWYf25OKxfFlG4uGbDdvbVhLH6atgq2y0sAL8DCXQmN5HmyywyLyEFcYhNqDj6dlWtiie4PRM+zCDX0C3tzCOt24b2MQ7jXG7xzE/WQNyAV+XELqTkYOdEW4t3yLRNV8egNS+JDUxSky/MGs+S6eQf8p/vbPrsY1/fBSM4CTB/nMLG/642kSBOhKb4y/7TayIzQzLA+Ut8C4OdKZm0UodSb7XS/qHkHgLIYXuFRW39vZFh/WsVZ/UPr1098+GqBgzDSkG+jSV2M1/iTVb/VypiwI1FjuKVmKXazeo97Ji1nabLA5pRnqlpWm8YW0q3he0v6IUzQ7Vk2urERMZ3KbFS+f8= adamciuris@cs-741664149018-default''
+								# tails
+								"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCr3aeLoj93/PgmLpNIKLEA3flVLaRbZVnyoJzK2OF+I/jkU2ZIpVLels7q1zrsaWOevZ9J9QVg/TqbXsh3pd+qg++lHU9SV6P3oJHCwj7KNGN72rohFdOjjjpVqriAW03aDbB0XmMDwc6WfWNeIspRPn8PN0rL9EUFTX8hjmKp7ljs6mEwN4yOPVgtEit+5w2xWKQVe4cA57I2s0IAeovSr01a5JpFGgMVBnBjK0ljr/ZgypU/dUcxpVS6my4eekha8mGZgjwdofQSukiYybKkk4pMSjXORZcT1oZMUHrlgd/Ea8foiPSVAFvw8F6d2RqiWhNnxgcRsHm3ZQ4dyLOwXofqd5FS/2bE1sAn/R/OMyaM/S7YTrmX1S1a1M5PYqakcVbKcttXJHltFlNTaiklcncgnejsYC1vws+F5G4CMuVAn8UR3oEBcUXbgodt1VrnTf4hG0PlbB2ux6X3dFrUnLQBtdSk2blHVfzP0XNhL6I7NcQF2y3FcyVSEc06uCM= amnesia@amnesia"
 
 						];
 				};

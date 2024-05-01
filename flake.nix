@@ -43,7 +43,7 @@
         }
       );
       nixosConfigurations = {
-        "lysos.us-central1-a.c.nyxos-422020.internal" = nixpkgs.lib.nixosSystem {
+        "rishi-tea.us-central1-a.c.nyxos-422020.internal" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           pkgs = legacyPackages.x86_64-linux;
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
