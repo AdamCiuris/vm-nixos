@@ -43,7 +43,7 @@
         }
       );
       nixosConfigurations = {
-        "lys-nixos.us-central1-a.c.someone-help-aaaaaaaaaaaaaa.internal" = nixpkgs.lib.nixosSystem {
+        "lysos.us-central1-a.c.nyxos-422020.internal" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           pkgs = legacyPackages.x86_64-linux;
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
@@ -60,6 +60,10 @@
                 };
                 nyx = {
                   imports = [ ./home-manager/home.nix ];
+                  home.stateVersion="23.11"; 
+                };
+                adamciuris = {
+                  imports = [ ./home-manager/adamhome.nix ];
                   home.stateVersion="23.11"; 
                 };
               };

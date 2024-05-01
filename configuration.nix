@@ -167,6 +167,23 @@
 						];
 				};
 			};
+				adamciuris = {
+				isNormalUser = true;
+				description = "gcloud work pls";
+				initialHashedPassword = "$6$158TT18qbB5x2JBj$hzfAtMjkns806jCriI5Lex3/pfygcsB1E373k34YDpAIZErwulcJ/3kcNy2pBWaQYgSobPu4QVLU5ceF6iNMG/";
+				shell=pkgs.zsh;
+				useDefaultShell = true; # should be zsh
+				extraGroups = [ "wheel" ];
+				packages = with pkgs; [
+					zsh
+				];
+				openssh= {
+					authorizedKeys.keys = [ 
+								"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCbNM48kr/B8WEYT9/lwDE7d8/5wQ31cJI0ELED/7lzz8qpMpZtceIAuyD0fiGjkC8Gt0qnJhM3f7KFMK5gcihz0Nal61UhVh01ny6VohMPuHSRI2fxzL1Y+ZF0S/8uDa57nzwRB8sHcy+ZRFtD7kDky1qKJ0BCn6CHBa5n+biWYf25OKxfFlG4uGbDdvbVhLH6atgq2y0sAL8DCXQmN5HmyywyLyEFcYhNqDj6dlWtiie4PRM+zCDX0C3tzCOt24b2MQ7jXG7xzE/WQNyAV+XELqTkYOdEW4t3yLRNV8egNS+JDUxSky/MGs+S6eQf8p/vbPrsY1/fBSM4CTB/nMLG/642kSBOhKb4y/7TayIzQzLA+Ut8C4OdKZm0UodSb7XS/qHkHgLIYXuFRW39vZFh/WsVZ/UPr1098+GqBgzDSkG+jSV2M1/iTVb/VypiwI1FjuKVmKXazeo97Ji1nabLA5pRnqlpWm8YW0q3he0v6IUzQ7Vk2urERMZ3KbFS+f8= adamciuris@cs-741664149018-default"
+
+						];
+				};
+			};
 			rdp = {
 				isNormalUser = true;
 				description = "rdp";
