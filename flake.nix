@@ -56,15 +56,15 @@
               home-manager.users = {
                 rdp = {
                   imports = [ ./home-manager/rdpHome.nix ];
-                  home.stateVersion="23.11"; 
+                  home.stateVersion="24.05"; 
                 };
                 nyx = {
                   imports = [ ./home-manager/home.nix ];
-                  home.stateVersion="23.11"; 
+                  home.stateVersion="24.05"; 
                 };
                 adamciuris = {
                   imports = [ ./home-manager/adamhome.nix ];
-                  home.stateVersion="23.11"; 
+                  home.stateVersion="24.05"; 
                 };
               };
               home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
