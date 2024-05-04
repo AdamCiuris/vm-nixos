@@ -151,6 +151,7 @@
 				];
 				openssh= {
 					authorizedKeys.keys = [ # dXAgdG8gbm8gZ29vZA==
+								"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCkMaJDb18vQ4DZZhKCqYiXS68TuwCHZMtJk2vj7j0+7WKbgkiNTdBICwhZPGZXYJP3mMuodTnjkjWPh1HSAdW1dhwEPAcG+1yHslHgCKT6g6kFg1GMAVlrdcZVXtquznDpIFsJmmuIo0QsHpP0jAWoiwxcaSCM822FW4GtfVw+AlBKZPpI+ry11LUMmo00kXJAz3PBhGLHIgWx/hYkPMB6GMyoST1RfAn/WLILN01xdtnsNS/Ae5xHQPeVWnob7YwtnuPkTvfXeXocQU4f+wULz0bqq7GVNsJ4vSElyZSX7+jX3p4Vxv49NasH4YmsIR9aGhh1TV2w9C2jVDzUYPpGIlskcpcXLnm+g7hum4dHpVP/te2EreoY/dxJxrGWLjEZcda1TB5BgmTXtYS6//awoBFSiQwhvm8Y5gagUBPQYiaaKT8PtUmXNVlV4CRTyaSeOL8mTvgpJ0vj8WsmhqSAnVdrKQkPo6wPgjCkwrEPzil6ulkmos8pJ5hkBVj/wNk= nyx@lgtv"
 								"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM3ruq6eddMwBjBWDcOtBWJi5hPd/pTFH3epI/Xzqw01 nyx@nixos"
 								"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCr3aeLoj93/PgmLpNIKLEA3flVLaRbZVnyoJzK2OF+I/jkU2ZIpVLels7q1zrsaWOevZ9J9QVg/TqbXsh3pd+qg++lHU9SV6P3oJHCwj7KNGN72rohFdOjjjpVqriAW03aDbB0XmMDwc6WfWNeIspRPn8PN0rL9EUFTX8hjmKp7ljs6mEwN4yOPVgtEit+5w2xWKQVe4cA57I2s0IAeovSr01a5JpFGgMVBnBjK0ljr/ZgypU/dUcxpVS6my4eekha8mGZgjwdofQSukiYybKkk4pMSjXORZcT1oZMUHrlgd/Ea8foiPSVAFvw8F6d2RqiWhNnxgcRsHm3ZQ4dyLOwXofqd5FS/2bE1sAn/R/OMyaM/S7YTrmX1S1a1M5PYqakcVbKcttXJHltFlNTaiklcncgnejsYC1vws+F5G4CMuVAn8UR3oEBcUXbgodt1VrnTf4hG0PlbB2ux6X3dFrUnLQBtdSk2blHVfzP0XNhL6I7NcQF2y3FcyVSEc06uCM= amnesia@amnesia"
 						];
