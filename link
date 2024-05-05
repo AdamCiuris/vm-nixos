@@ -5,7 +5,7 @@ nixosConfigPath=/etc/nixos
 hard-link-recursive() {
     local srcDir=$1
     local destDir=$2
-    local nixFiles=$(find $srcDir -maxdepth 1 -type f -name "*.nix")
+    local nixFiles=$(find $srcDir -maxdepth 1 -type f -name "*.nix" -o -name "*.conf") # add confs too
     if [ !  -d ${destDir} ]; then
         sudo mkdir ${destDir}
     fi
