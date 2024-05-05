@@ -7,12 +7,8 @@
 	imports =
 		[ # Include the results of the hardware scan.
 		<nixpkgs/nixos/modules/virtualisation/google-compute-image.nix>
+		./home-manager/configs/msmtp.nix
 		];
-
-	# filesystems."/" = {
-	# 	device = "/dev/sdb";
-	# 	fsType = "ext4";
-	# };
 	# Nix settings
 	nix.settings.experimental-features = ["nix-command" "flakes"]; # needed to try flakes from tutorial
 
@@ -53,40 +49,44 @@
 		# interface specific rules
 		# networking.firewall.interfaces."eth0".allowedTCPPorts = [ 80 443 ];
 	};
-		# allowedUD
-	# reminder you need to run this as root to delete generations from EFI
-	# user one is just profiles and home-manager, i think
 	nix.gc.automatic = true;
 	nix.gc.options = "--delete-older-than 1d";
-
+	environment.etc = { # sym links to /etc from =
+		"/etc/fail2ban/action.d/msmtp-whois.conf".source = /etc/nixos/environment/msmtp-whois.conf; # TODO figure out how to make relative
+	};
 	services = {
 		# Enable the OpenSSH server.
 		openssh = {
 			enable = true;
 			permitRootLogin = "no";
 			passwordAuthentication = true; # if false require pub key
-
 		};
 
+		# action = %(action_mw)s[ mailcmd="cat /home/nyx/GITHUB/vm-nixos/message.txt | /home/nyx/.nix-profile/bin/msmtp -t"]
 		fail2ban = { # puts bad ssh attempts in jail 
 			enable = true;
-			bantime = "300m";
-			maxretry= 3;
-			banaction = "iptables-allports"; # uses iptables to block ip from every port
-			# pretty sure these are all DEFAULT
-			jails = { 
-				ssh = ''
-					enable = true
-					filter = sshd
-					logpath = /var/log/ssh_auth.log
-					maxretry = 3
-					findtime = 300m
-					bantime = 300m
-					banaction = iptables-allports
-				'';
-
+			jails = pkgs.lib.mkForce { # mkForce is needed to override the default jails
+DEFAULT =
+''backend = systemd
+banaction = iptables-allports
+banaction_allports = iptables-allports
+mta = msmtp
+logtarget = FILE
+loglevel = DEBUG
+action = %(action_mw)s[from=paperpl88s@gmail.com, sender=paperpl88s@gmail.com, destination=adamciuris@gmail.com, sendername=Fail2Ban]
+bantime = 300m
+maxretry = 3'';
+sshd=''
+enabled = true
+port = 22
+banaction = iptables-allports
+maxretry  = 5
+findtime  = 1d
+bantime   = 2w'';
+				};
 			};
-		};
+
+
 		# Enable the X11 windowing system.
 		xserver = {
 			enable = true;
@@ -121,8 +121,7 @@
 			alsa.support32Bit = true;
 			pulse.enable = true;
 		};
-	};
-	
+	}; # END SERVICES
 	sound.enable = true;
 	security.rtkit.enable = true;
 
