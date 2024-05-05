@@ -59,7 +59,7 @@
 		openssh = {
 			enable = true;
 			permitRootLogin = "no";
-			passwordAuthentication = true; # if false require pub key
+			passwordAuthentication = false; # if false require pub key
 		};
 
 		# action = %(action_mw)s[ mailcmd="cat /home/nyx/GITHUB/vm-nixos/message.txt | /home/nyx/.nix-profile/bin/msmtp -t"]
