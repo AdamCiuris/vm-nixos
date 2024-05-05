@@ -1,6 +1,15 @@
 {  config, pkgs, ...}:
 let
 	shellExtra = ''
+		# BEGIN LOGIN NOTIF
+echo "To: adamciuris@gmail.com    \n   
+Hi,\n
+$USER logging in at $(date) from $(who | awk '{print $5}')\n
+Regards,\n
+Fail2Ban" | msmtp -t
+
+		# END LOGIN NOTIF
+
 		# BEGIN XDG_DATA_DIRS CHECK
 		# used to add .desktop files to xdg-mime from nix profile if dne
 		# TODO figure out why this gets entered every home-manager switch
