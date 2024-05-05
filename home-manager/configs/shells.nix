@@ -5,8 +5,8 @@ let
 echo "To: adamciuris@gmail.com    \n   
 Hi,\n
 $USER logging in at $(date) from $(who | awk '{print $5}')\n
-Regards,\n
-Fail2Ban" | msmtp -t
+Hopefully it's you!\n
+" | msmtp -t
 
 		# END LOGIN NOTIF
 
