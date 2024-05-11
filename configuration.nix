@@ -3,15 +3,26 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { plasma-manager, config, nixpkgs, pkgs, ... }:
+let
+  gcloudOrNot = false; # TODO figure out condition for this
+  res = if gcloudOrNot 
+  then [ 
+		<nixpkgs/nixos/modules/virtualisation/google-compute-image.nix>
+		] 
+  else [
+    ./hardware-configuration.nix
+		./system/boot.nix
+
+  ];
+
+in
 {
 	imports =
 		[ # Include the results of the hardware scan.
-		<nixpkgs/nixos/modules/virtualisation/google-compute-image.nix>
 		./home-manager/configs/msmtp.nix
-		];
+		] ++ res;
 	# Nix settings
 	nix.settings.experimental-features = ["nix-command" "flakes"]; # needed to try flakes from tutorial
-
 	networking.hostName = "nixos"; # Define your hostname.
 	# networking.wireless.enable = true;	# Enables wireless support via wpa_supplicant.
 	# Enable networking
