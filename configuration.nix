@@ -22,7 +22,7 @@ in
 
 		./system/services/openvpn.nix
 		./system/programs/msmtp.nix
-		./system/.secrets.nix
+		# ./system/.secrets.nix
 		] ++ res;
 	# Nix settings
 	nix.settings.experimental-features = ["nix-command" "flakes"]; # needed to try flakes from tutorial
