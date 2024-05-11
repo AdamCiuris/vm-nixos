@@ -48,7 +48,7 @@
 		./configs/vscodium.nix
 		./configs/shells.nix
 		./configs/plasma.nix
-		./configs/msmtp.nix
+		../system/programs/msmtp.nix
   ];
 
 

@@ -19,7 +19,9 @@ in
 {
 	imports =
 		[ # Include the results of the hardware scan.
-		./home-manager/configs/msmtp.nix
+
+		./system/services/openvpn.nix
+		./programs/msmtp.nix
 		] ++ res;
 	# Nix settings
 	nix.settings.experimental-features = ["nix-command" "flakes"]; # needed to try flakes from tutorial
@@ -62,8 +64,8 @@ in
 	};
 	nix.gc.automatic = true;
 	nix.gc.options = "--delete-older-than 1d";
-	environment.etc = { # sym links to /etc from =
-		"/etc/fail2ban/action.d/msmtp-whois.conf".source = /etc/nixos/environment/msmtp-whois.conf; # TODO figure out how to make relative
+	environment.etc = { # reminder this starts in /etc
+		"/fail2ban/action.d/msmtp-whois.conf".source = /etc/nixos/environment/msmtp-whois.conf; 
 	};
 	services = {
 		# Enable the OpenSSH server.
