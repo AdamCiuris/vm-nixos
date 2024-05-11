@@ -21,7 +21,7 @@ in
 		[ # Include the results of the hardware scan.
 
 		./system/services/openvpn.nix
-		./programs/msmtp.nix
+		./system/programs/msmtp.nix
 		] ++ res;
 	# Nix settings
 	nix.settings.experimental-features = ["nix-command" "flakes"]; # needed to try flakes from tutorial
